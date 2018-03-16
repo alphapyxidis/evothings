@@ -1,0 +1,34 @@
+{
+  "name": "basic-app",
+  "version": "1.0.0",
+  "title": "Basic App",
+  "description": "A basic  for a simple Evothings app.",
+  "tags": [],
+  "libraries": [
+    {
+      "name": "jquery",
+      "version": "2.1.1"
+    },
+    {
+      "name": "onsenui",
+      "version": "2.0.0"
+    }
+  ],
+  "plugins": [
+    {
+      "name": "cordova-plugin-camera"
+    },
+    {
+      "name": "cordova-plugin-device"
+    }
+  ],
+  "index-file": "index.html",
+  "uuid": "76cb745d-3345-47e7-a82c-b94ee8ae1692",
+  "icon": "app-icon.png",
+  "doc-url": "http://evothings.com/2.2/doc/examples/template-basic-app.html",
+  "long-description": "A basic  for a simple Evothings app.",
+  "cordova-id": "com.apyx.basicapp",
+  "author-name": "alphapyxidis",
+  "author-email": "vincent.vermorel@gmail.com",
+  "author-url": "https://alpha-pyxidis.com"
+}
