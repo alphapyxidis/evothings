@@ -1,5 +1,25 @@
 // Initialize your app
-var myApp = new Framework7();
+var myApp = new Framework7({
+  // App root element
+  root: '#f7demo',
+  // App Name
+  name: 'Demo F7',
+  // App id
+  id: 'com.alphapyxidis.f7demo',
+  // Enable swipe panel
+  panel: {
+    swipe: 'left',
+  },
+  // Add default routes
+  routes: [
+    {
+      path: '/about/',
+      url: 'about.html',
+    },
+  ],
+  // ... other parameters  
+    
+});
 
 // Export selectors engine
 var $$ = Dom7;

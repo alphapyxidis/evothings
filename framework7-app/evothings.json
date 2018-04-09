@@ -1,8 +1,8 @@
 {
   "name": "framework7-app",
   "version": "1.0.0",
-  "title": "Basic Template App",
-  "description": "A basic template for a simple Evothings app.",
+  "title": "Demo Framework7",
+  "description": "Application Evothings - demo Framework7",
   "tags": [],
   "libraries": [
     {
@@ -54,8 +54,8 @@
   "uuid": "6f753139-6b24-4517-809b-35e3461d3806",
   "icon": "app-icon.png",
   "doc-url": "http://evothings.com/2.2/doc/examples/template-basic-app.html",
-  "long-description": "A basic template for a simple Evothings app.",
-  "cordova-id": "com.evothings.examples.templatebasicapp",
+  "long-description": "Application Evothings - demo framework7.",
+  "cordova-id": "com.alphapyxidis.f7demo",
   "author-name": "alphapyxidis",
   "author-email": "vincent.vermorel@gmail.com",
   "author-url": "https://alpha-pyxidis.com"
