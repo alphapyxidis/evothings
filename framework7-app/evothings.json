@@ -1,0 +1,62 @@
+{
+  "name": "framework7-app",
+  "version": "1.0.0",
+  "title": "Basic Template App",
+  "description": "A basic template for a simple Evothings app.",
+  "tags": [],
+  "libraries": [
+    {
+      "name": "framework7",
+      "version": "1.4.2"
+    },
+    {
+      "name": "jquery",
+      "version": "2.1.1"
+    }
+  ],
+  "plugins": [
+    {
+      "name": "cordova-plugin-battery-status"
+    },
+    {
+      "name": "cordova-plugin-camera"
+    },
+    {
+      "name": "cordova-plugin-device"
+    },
+    {
+      "name": "cordova-plugin-device-motion"
+    },
+    {
+      "name": "cordova-plugin-device-orientation"
+    },
+    {
+      "name": "cordova-plugin-dialogs"
+    },
+    {
+      "name": "cordova-plugin-geolocation"
+    },
+    {
+      "name": "cordova-plugin-network-information"
+    },
+    {
+      "name": "cordova-plugin-statusbar"
+    },
+    {
+      "name": "de.appplant.cordova.plugin.local-notification",
+      "version": "0.8.4"
+    },
+    {
+      "name": "phonegap-nfc"
+    }
+  ],
+  "index-file": "index.html",
+  "uuid": "6f753139-6b24-4517-809b-35e3461d3806",
+  "icon": "app-icon.png",
+  "doc-url": "http://evothings.com/2.2/doc/examples/template-basic-app.html",
+  "long-description": "A basic template for a simple Evothings app.",
+  "cordova-id": "com.evothings.examples.templatebasicapp",
+  "author-name": "alphapyxidis",
+  "author-email": "vincent.vermorel@gmail.com",
+  "author-url": "https://alpha-pyxidis.com"
+}
