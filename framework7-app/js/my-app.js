@@ -4,7 +4,7 @@ var $$ = Dom7;
 // Initialize your app
 var myApp = new Framework7({
   // App root element
-  root: '#f7demo',
+  root: '#app',
   // App Name
   name: 'Demo F7',
   // App id
