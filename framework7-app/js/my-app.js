@@ -2,11 +2,11 @@
 var $$ = Dom7;
 
 // Initialize your app
-var myApp = new Framework7({
+var app = new Framework7({
   // App root element
-  root: '#f7demo',
+  root: '#app',
   // App Name
-  name: 'Demo F7',
+  name: 'DemoF7',
   // App id
   id: 'com.alphapyxidis.f7demo',
   // Automatic theme detection
@@ -62,7 +62,6 @@ var catalogView = app.views.create('#view-catalog', {
 var settingsView = app.views.create('#view-settings', {
   url: '/settings/'
 });
-
 
 // Login Screen Demo
 $$('#my-login-screen .login-button').on('click', function () {
