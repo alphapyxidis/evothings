@@ -1,3 +1,6 @@
+// Dom7
+var $$ = Dom7;
+
 // Initialize your app
 var myApp = new Framework7({
   // App root element
@@ -7,64 +10,68 @@ var myApp = new Framework7({
   // App id
   id: 'com.alphapyxidis.f7demo',
   // Automatic theme detection
-  theme: 'ios', 
+  theme: 'auto', 
   // Enable swipe panel
   panel: {
     swipe: 'left',
   },
-  // Add default routes
-  routes: [
-    {
-      path: '/about/',
-      url: 'about.html',
+  // App root data
+  data: function () {
+    return {
+      user: {
+        firstName: 'John',
+        lastName: 'Doe',
+      },
+      // Demo products for Catalog section
+      products: [
+        {
+          id: '1',
+          title: 'Apple iPhone 8',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi tempora similique reiciendis, error nesciunt vero, blanditiis pariatur dolor, minima sed sapiente rerum, dolorem corrupti hic modi praesentium unde saepe perspiciatis.'
+        },
+        {
+          id: '2',
+          title: 'Apple iPhone 8 Plus',
+          description: 'Velit odit autem modi saepe ratione totam minus, aperiam, labore quia provident temporibus quasi est ut aliquid blanditiis beatae suscipit odio vel! Nostrum porro sunt sint eveniet maiores, dolorem itaque!'
+        },
+        {
+          id: '3',
+          title: 'Apple iPhone X',
+          description: 'Expedita sequi perferendis quod illum pariatur aliquam, alias laboriosam! Vero blanditiis placeat, mollitia necessitatibus reprehenderit. Labore dolores amet quos, accusamus earum asperiores officiis assumenda optio architecto quia neque, quae eum.'
+        },
+      ]
+    };
+  },
+  // App root methods
+  methods: {
+    helloWorld: function () {
+      app.dialog.alert('Hello World!');
     },
-  ],
-  // ... other parameters  
-    
+  },
+  // App routes
+  routes: routes,
 });
 
-// Export selectors engine
-var $$ = Dom7;
-
-// Add view
-var mainView = myApp.addView('.view-main', {
-    // Because we use fixed-through navbar we can enable dynamic navbar
-    dynamicNavbar: true
+// Init/Create views
+var homeView = app.views.create('#view-home', {
+  url: '/'
+});
+var catalogView = app.views.create('#view-catalog', {
+  url: '/catalog/'
+});
+var settingsView = app.views.create('#view-settings', {
+  url: '/settings/'
 });
 
-// Callbacks to run specific code for specific pages, for example for About page:
-myApp.onPageInit('about', function (page) {
-    // run createContentPage func after link was clicked
-    $$('.create-page').on('click', function () {
-        createContentPage();
-    });
-});
 
-// Generate dynamic page
-var dynamicPageIndex = 0;
-function createContentPage() {
-	mainView.router.loadContent(
-        '<!-- Top Navbar-->' +
-        '<div class="navbar">' +
-        '  <div class="navbar-inner">' +
-        '    <div class="left"><a href="#" class="back link"><i class="icon icon-back"></i><span>Back</span></a></div>' +
-        '    <div class="center sliding">Dynamic Page ' + (++dynamicPageIndex) + '</div>' +
-        '  </div>' +
-        '</div>' +
-        '<div class="pages">' +
-        '  <!-- Page, data-page contains page name-->' +
-        '  <div data-page="dynamic-pages" class="page">' +
-        '    <!-- Scrollable page content-->' +
-        '    <div class="page-content">' +
-        '      <div class="content-block">' +
-        '        <div class="content-block-inner">' +
-        '          <p>Here is a dynamic page created on ' + new Date() + ' !</p>' +
-        '          <p>Go <a href="#" class="back">back</a> or go to <a href="services.html">Services</a>.</p>' +
-        '        </div>' +
-        '      </div>' +
-        '    </div>' +
-        '  </div>' +
-        '</div>'
-    );
-	return;
-}
+// Login Screen Demo
+$$('#my-login-screen .login-button').on('click', function () {
+  var username = $$('#my-login-screen [name="username"]').val();
+  var password = $$('#my-login-screen [name="password"]').val();
+
+  // Close login screen
+  app.loginScreen.close('#my-login-screen');
+
+  // Alert username and password
+  app.dialog.alert('Username: ' + username + '<br>Password: ' + password);
+});

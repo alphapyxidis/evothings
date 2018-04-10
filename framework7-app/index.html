@@ -16,11 +16,8 @@
 
     <!-- Path to Framework7 Library CSS -->
     <link rel="stylesheet" href="libs/framework7/css/framework7.min.css">
-
-	<style>
-		@import 'ui/css/evothings-app.css';
-	</style>
-
+		<link rel="stylesheet" href="ui/css/icons.css">
+		<link rel="stylesheet" href="ui/css/app.css">
 	<script>
 	// Redirect console.log to Evothings Workbench.
 	if (window.hyper && window.hyper.log) { console.log = hyper.log }
@@ -29,15 +26,7 @@
 </head>
 
 <body ontouchstart=""><!-- ontouchstart="" enables low-delay CSS transitions. -->
-	<header>
-		<button class="back" onclick="history.back()">
-			<img src="ui/images/arrow-left.svg" />
-		</button>
 
-		<img class="logotype" src="ui/images/logo.svg" alt="Evothings" />
-
-		<!--<button class="menu" onclick=""><img src="ui/images/menu.svg" /></button>-->
-	</header>
 
   <div id="app">
     <!-- Status bar overlay for fullscreen mode-->
@@ -260,7 +249,7 @@
 
 	<script src="cordova.js"></script>
 	<script src="libs/evothings/evothings.js"></script>
-	<script src="libs/evothings/ui/ui.js"></script>
+<!--	<script src="libs/evothings/ui/ui.js"></script> -->
 	<!-- TODO: Add libraries that you need -->
 
     <!-- Path to Framework7 Library JS-->
