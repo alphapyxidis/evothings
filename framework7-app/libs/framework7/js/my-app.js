@@ -6,6 +6,8 @@ var myApp = new Framework7({
   name: 'Demo F7',
   // App id
   id: 'com.alphapyxidis.f7demo',
+  // Automatic theme detection
+  theme: 'ios', 
   // Enable swipe panel
   panel: {
     swipe: 'left',

@@ -2,12 +2,20 @@
 <html>
 
 <head>
-
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, user-scalable=no,
-		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar -->
+	<meta name="theme-color" content="#2196f3">
+	
+    <!-- Your app title -->
 	<title>Basic Framework 7 App</title>
+
+    <!-- Path to Framework7 Library CSS -->
+    <link rel="stylesheet" href="libs/framework7/css/framework7.min.css">
+    <!-- Path to your custom app styles-->
+	<link rel="stylesheet" href="libs/framework7/css/my-app.css">
 
 	<style>
 		@import 'ui/css/evothings-app.css';
@@ -22,25 +30,55 @@
 
 <body ontouchstart=""><!-- ontouchstart="" enables low-delay CSS transitions. -->
 
-	<header>
-		<button class="back" onclick="history.back()">
-			<img src="ui/images/arrow-left.svg" />
-		</button>
+    <!-- App root element -->
+    <div id="app">
+		<!-- Statusbar overlay -->
+		<div class="statusbar"></div>
+  
+		<!-- Your main view, should have "view-main" class -->
+		<div class="view view-main">
+		  <!-- Initial Page, "data-name" contains page name -->
+		  <div data-name="home" class="page">
+  
+			<!-- Top Navbar -->
+			<div class="navbar">
+			  <div class="navbar-inner">
+				<div class="title">Awesome App</div>
+			  </div>
+			</div>
+  
+			<!-- Toolbar -->
+			<div class="toolbar">
+			  <div class="toolbar-inner">
+				<!-- Toolbar links -->
+				<a href="#" class="link">Link 1</a>
+				<a href="#" class="link">Link 2</a>
+			  </div>
+			</div>
+  
+			<!-- Scrollable page content -->
+			<div class="page-content">
 
-		<img class="logotype" src="ui/images/logo.svg" alt="Evothings" />
+				<h1>F7 demo</h1>
 
-		<!--<button class="menu" onclick=""><img src="ui/images/menu.svg" /></button>-->
-	</header>
+				<p>Demo application Evothings basée sur framework 7.</p>
 
-	<h1>F7 demo</h1>
-
-	<p>Demo application Evothings basée sur framework 7.</p>
+			  <!-- Link to another page -->
+			  <a href="/about/">About app</a>
+			</div>
+		  </div>
+		</div>
+	  </div>
 
 	<script src="cordova.js"></script>
 	<script src="libs/evothings/evothings.js"></script>
 	<script src="libs/evothings/ui/ui.js"></script>
 	<!-- TODO: Add libraries that you need -->
 
+    <!-- Path to Framework7 Library JS-->
+    <script type="text/javascript" src="libs/framework7/js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="libs/framework7/js/my-app.js"></script>
 </body>
 
 </html>
