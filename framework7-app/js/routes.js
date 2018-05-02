@@ -29,6 +29,10 @@ routes = [
     componentUrl: './pages/page-loader-component.html',
   },
   {
+    path: '/nfc-tag-reader/',
+    componentUrl: './pages/nfc-tag-reader.html',
+  },
+  {
     path: '/request-and-load/user/:userId/',
     async: function (routeTo, routeFrom, resolve, reject) {
       // Router instance
