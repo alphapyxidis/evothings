@@ -1,0 +1,142 @@
+
+<template>
+    <div class="page" data-name="nfc-reader">
+        <div class="navbar">
+        <div class="navbar-inner sliding">
+            <div class="left">
+            <a href="#" class="link back">
+                <i class="icon icon-back"></i>
+                <span class="ios-only">Back</span>
+            </a>
+            </div>
+            <div class="title">NFC reader</div>
+        </div>
+        </div>
+        <div class="page-content">
+
+            <div class="block-title"><h3>PhoneGap NFC Reader</h3></div>
+            <div class="block">
+
+                <div id="tagContents">
+                    <div class="hidden">
+                        Scan a tag to begin.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="block">
+                    <!-- <script id="non-ndef-template" type="text/x-handlebars-template">
+                    <p>Scanned a non-NDEF NFC tag</p>
+                    <p>
+                        Tag Id: <strong>{{ bytesToHexString id }}</strong>
+                    </p>
+                </script>
+
+                <script id="tag-template" type="text/x-handlebars-template">
+                    <p>Scanned an NDEF tag with {{ ndefMessage.length }} {{ pluralize ndefMessage.length 'record' 'records' }}</p>
+
+                    {{!
+                        BB10 and WP8 will not have any meta info
+                        Android P2P will not have id, but will have type
+                    }}
+                    <dl>
+                        {{#if id}}
+                        <dt>Tag Id</dt>             <dd>{{ bytesToHexString id }}</dd>
+                        {{/if}}
+                        
+                        {{#if type}}
+                        <dt>Tag Type</dt>           <dd>{{ type }}</dd>
+                        {{/if}}
+
+                        {{#if maxSize }}
+                        <dt>Max Size</dt>           <dd>{{ maxSize }} bytes</dd>
+                        {{/if}}            
+
+                        {{#if freeSpaceSize }}
+                        <dt>Free Space</dt>         <dd>{{ freeSpaceSize }} bytes</dd>
+                        {{/if}}
+
+                        {{#if id}}
+                        <dt>Is Writable</dt>        <dd>{{ toString isWritable }}</dd>
+                        <dt>Can Make Read Only</dt> <dd>{{ toString canMakeReadOnly }}</dd>
+                        {{/if}}            
+                    </dl>
+
+                    {{#each ndefMessage}}  {{! does not read well, iterating on records non messages}}
+                    <div class='record'>
+                        Record {{ @index }}:<br/>
+                        TNF: <b>{{ tnfToString tnf }}</b><br/>        
+                        {{#if tnf}}
+                            Record Type: <b>{{ bytesToString type }}</b><br/>
+                            Payload: <b>{{ decodePayload this }}</b><br/>
+                            {{#if id}}
+                                Record Id: <b>{{ bytesToString id }}</b><br/>            
+                            {{/if}}
+                        {{/if}}
+                    </div>
+                    {{/each}}
+                </script> -->
+            </div>
+        </div>
+    </div>    
+</template>
+<style>
+        p {
+          margin: 10px 0;
+        }
+</style>
+<script>
+    return {
+      // Lifecycle Hooks
+      beforeCreate() {
+        console.log('componentBeforeCreate', this);
+      },
+      created() {
+        console.log('componentCreated', this);
+      },
+      beforeMount() {
+        console.log('componentBeforeMount', this);
+      },
+      mounted() {
+        console.log('componentMounted', this);
+      },
+      beforeDestroy() {
+        console.log('componentBeforeDestroy', this);
+      },
+      destroyed() {
+        console.log('componentDestroyed', this);
+      },
+      // Component Data
+      data: function () {
+        // Must return an object
+        return {
+
+        }
+      },
+      // Page Events
+      on: {
+            pageMounted: function(e, page) {
+                console.log('pageMounted', page);
+            },
+            pageInit: function (e, page) {
+                console.log('pageInit', page);
+                // myNfc.initialize();
+            },
+            pageBeforeIn: function(e, page) {
+                console.log('pageBeforeIn', page);
+            },
+            pageAfterIn: function(e, page) {
+                console.log('pageAfterIn', page);
+            },
+            pageBeforeOut: function(e, page) {
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function(e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function(e, page) {
+                console.log('pageBeforeRemove', page);
+            },
+        }
+    }
+</script> 
