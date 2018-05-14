@@ -14,7 +14,7 @@
         </div>
         <div class="page-content">
 
-            <div class="block-title"><h3>PhoneGap NFC Reader</h3></div>
+            <div class="block-title"><h3><i class="icon material-icons ">nfc</i>&nbsp;PhoneGap NFC Reader</h3></div>
             <div class="block">
 
                 <div id="tagContents">
@@ -25,57 +25,59 @@
             </div>
             
             <div class="block">
-                    <!-- <script id="non-ndef-template" type="text/x-handlebars-template">
+
+                <script id="non-ndef-template" type="text/x-handlebars-template">
                     <p>Scanned a non-NDEF NFC tag</p>
                     <p>
                         Tag Id: <strong>{{ bytesToHexString id }}</strong>
                     </p>
                 </script>
-
+        
                 <script id="tag-template" type="text/x-handlebars-template">
-                    <p>Scanned an NDEF tag with {{ ndefMessage.length }} {{ pluralize ndefMessage.length 'record' 'records' }}</p>
-
-                    {{!
-                        BB10 and WP8 will not have any meta info
-                        Android P2P will not have id, but will have type
-                    }}
-                    <dl>
-                        {{#if id}}
-                        <dt>Tag Id</dt>             <dd>{{ bytesToHexString id }}</dd>
-                        {{/if}}
-                        
-                        {{#if type}}
-                        <dt>Tag Type</dt>           <dd>{{ type }}</dd>
-                        {{/if}}
-
-                        {{#if maxSize }}
-                        <dt>Max Size</dt>           <dd>{{ maxSize }} bytes</dd>
-                        {{/if}}            
-
-                        {{#if freeSpaceSize }}
-                        <dt>Free Space</dt>         <dd>{{ freeSpaceSize }} bytes</dd>
-                        {{/if}}
-
-                        {{#if id}}
-                        <dt>Is Writable</dt>        <dd>{{ toString isWritable }}</dd>
-                        <dt>Can Make Read Only</dt> <dd>{{ toString canMakeReadOnly }}</dd>
-                        {{/if}}            
-                    </dl>
-
-                    {{#each ndefMessage}}  {{! does not read well, iterating on records non messages}}
-                    <div class='record'>
-                        Record {{ @index }}:<br/>
-                        TNF: <b>{{ tnfToString tnf }}</b><br/>        
-                        {{#if tnf}}
-                            Record Type: <b>{{ bytesToString type }}</b><br/>
-                            Payload: <b>{{ decodePayload this }}</b><br/>
-                            {{#if id}}
-                                Record Id: <b>{{ bytesToString id }}</b><br/>            
-                            {{/if}}
-                        {{/if}}
-                    </div>
-                    {{/each}}
-                </script> -->
+                  <p>Scanned an NDEF tag with {{ ndefMessage.length }} {{ pluralize ndefMessage.length 'record' 'records' }}</p>
+          
+                  {{!
+                      BB10 and WP8 will not have any meta info
+                      Android P2P will not have id, but will have type
+                  }}
+                  <dl>
+                      {{#if id}}
+                      <dt>Tag Id</dt>             <dd>{{ bytesToHexString id }}</dd>
+                      {{/if}}
+                      
+                      {{#if type}}
+                      <dt>Tag Type</dt>           <dd>{{ type }}</dd>
+                      {{/if}}
+          
+                      {{#if maxSize }}
+                      <dt>Max Size</dt>           <dd>{{ maxSize }} bytes</dd>
+                      {{/if}}            
+          
+                      {{#if freeSpaceSize }}
+                      <dt>Free Space</dt>         <dd>{{ freeSpaceSize }} bytes</dd>
+                      {{/if}}
+          
+                      {{#if id}}
+                      <dt>Is Writable</dt>        <dd>{{ toString isWritable }}</dd>
+                      <dt>Can Make Read Only</dt> <dd>{{ toString canMakeReadOnly }}</dd>
+                      {{/if}}            
+                  </dl>
+          
+                  {{#each ndefMessage}}  {{! does not read well, iterating on records non messages}}
+                  <div class='record'>
+                      Record {{ @index }}:<br/>
+                      TNF: <b>{{ tnfToString tnf }}</b><br/>        
+                      {{#if tnf}}
+                          Record Type: <b>{{ bytesToString type }}</b><br/>
+                          Payload: <b>{{ decodePayload this }}</b><br/>
+                          {{#if id}}
+                              Record Id: <b>{{ bytesToString id }}</b><br/>            
+                          {{/if}}
+                      {{/if}}
+                  </div>
+                  {{/each}}
+              </script>
+        
             </div>
         </div>
     </div>    
@@ -86,40 +88,128 @@
         }
 </style>
 <script>
+    var tagContents = document.getElementsById('tagContents');
     return {
-      // Lifecycle Hooks
-      beforeCreate() {
-        console.log('componentBeforeCreate', this);
-      },
-      created() {
-        console.log('componentCreated', this);
-      },
-      beforeMount() {
-        console.log('componentBeforeMount', this);
-      },
-      mounted() {
-        console.log('componentMounted', this);
-      },
-      beforeDestroy() {
-        console.log('componentBeforeDestroy', this);
-      },
-      destroyed() {
-        console.log('componentDestroyed', this);
-      },
-      // Component Data
-      data: function () {
+        // Lifecycle Hooks
+        beforeCreate() {
+            console.log('componentBeforeCreate', this);
+        },
+        created() {
+            console.log('componentCreated', this);
+        },
+        beforeMount() {
+            console.log('componentBeforeMount', this);
+        },
+        mounted() {
+            console.log('componentMounted', this);
+        },
+        beforeDestroy() {
+            console.log('componentBeforeDestroy', this);
+        },
+        destroyed() {
+            console.log('componentDestroyed', this);
+        },
+        // Component Data
+        data: function () {
         // Must return an object
-        return {
+            return {
 
-        }
-      },
-      // Page Events
-      on: {
+            }
+        },
+        // component methods
+        methods: {
+            onNfc: function (nfcEvent) {
+            
+                var tag = nfcEvent.tag;
+                
+                console.log(JSON.stringify(nfcEvent.tag));
+                this.clearScreen();
+
+                tagContents.innerHTML = this.nonNdefTagTemplate(tag);    
+            },
+            onNdef: function (nfcEvent) {
+                
+                console.log(JSON.stringify(nfcEvent.tag));
+                this.clearScreen();
+
+                var tag = nfcEvent.tag;
+
+                // BB7 has different names, copy to Android names
+                if (tag.serialNumber) {
+                    tag.id = tag.serialNumber;
+                    tag.isWritable = !tag.isLocked;
+                    tag.canMakeReadOnly = tag.isLockable;
+                }
+
+                tagContents.innerHTML = this.tagTemplate(tag);
+
+            },
+            clearScreen: function () {
+                
+                tagContents.innerHTML = "";
+                
+            },
+            showInstructions: function () {
+
+                var hidden = document.getElementsByClassName('hidden');
+                if (hidden && hidden.length) {
+                    hidden[0].className = 'instructions';
+                }
+                
+            },
+            compileTemplates: function () {
+
+                var source;
+                            
+                source = document.getElementById('non-ndef-template').innerHTML;
+                this.nonNdefTagTemplate = Template7.compile(source);
+
+                source = document.getElementById('tag-template').innerHTML;
+                this.tagTemplate = Template7.compile(source);
+                
+                console.log('this.compileTemplates()');
+            },
+            addTemplateHelpers: function () {
+                
+                Template7.registerHelper('bytesToString', function(byteArray) { 
+                    return nfc.bytesToString(byteArray);
+                });
+
+                Template7.registerHelper('bytesToHexString', function(byteArray) {
+                    return nfc.bytesToHexString(byteArray); 
+                });
+
+                // useful for boolean
+                Template7.registerHelper('toString', function(value) {  
+                    return String(value);  
+                });
+
+                Template7.registerHelper('tnfToString', function(tnf) {  
+                    return tnfToString(tnf);  
+                });
+
+                Template7.registerHelper('decodePayload', function(record) {
+                    return decodePayload(record);
+                });
+                
+                Template7.registerHelper('pluralize', function(number, single, plural) {
+                if (number === 1) { return single; }
+                else { return plural; }
+                });     
+
+                console.log('this.addTemplateHelpers()');
+            },  
+        },    
+        // Page Events
+        on: {
             pageMounted: function(e, page) {
                 console.log('pageMounted', page);
             },
             pageInit: function (e, page) {
                 console.log('pageInit', page);
+                page.compileTemplates();
+                page.addTemplateHelpers();
+                page.showInstructions();                
                 // myNfc.initialize();
             },
             pageBeforeIn: function(e, page) {
